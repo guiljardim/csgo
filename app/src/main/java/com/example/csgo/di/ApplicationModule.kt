@@ -1,13 +1,13 @@
 package com.example.csgo.di
 
 import com.example.csgo.BuildConfig
-import com.example.csgo.base.CsGoApplication
-import com.example.csgo.data.MatchesService
+import com.example.csgo.data.api.MatchesService
+import com.example.csgo.data.api.OpponentsService
 import com.example.csgo.data.datasource.MatchesRemoteDataSource
+import com.example.csgo.data.datasource.OpponentsRemoteDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.internal.managers.ApplicationComponentManager
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -45,11 +45,22 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideMatchesService(retrofit: Retrofit) = retrofit.create(MatchesService::class.java)
+    fun provideMatchesService(retrofit: Retrofit): MatchesService =
+        retrofit.create(MatchesService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideOpponentsService(retrofit: Retrofit): OpponentsService =
+        retrofit.create(OpponentsService::class.java)
 
     @Provides
     @Singleton
     fun provideMatchesRemoteDataSource(matchesService: MatchesService) =
         MatchesRemoteDataSource(matchesService)
+
+    @Provides
+    @Singleton
+    fun provideOpponentsRemoteDataSource(opponentsService: OpponentsService) =
+        OpponentsRemoteDataSource(opponentsService)
 
 }

@@ -1,6 +1,6 @@
 package com.example.csgo.data.datasource
 
-import com.example.csgo.data.MatchesService
+import com.example.csgo.data.api.MatchesService
 import com.example.csgo.data.model.MatchRemote
 import javax.inject.Inject
 
