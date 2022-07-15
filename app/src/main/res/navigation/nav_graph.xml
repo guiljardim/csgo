@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/matches_fragment">
+
+    <fragment
+        android:id="@+id/matches_fragment"
+        android:name="com.example.csgo.presentation.matches.MatchesFragment"
+        android:label="deposit_information_fragment"
+        tools:layout="@layout/fragment_matches" />
+
+</navigation>
