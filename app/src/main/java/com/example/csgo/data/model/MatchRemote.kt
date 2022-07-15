@@ -13,7 +13,7 @@ data class MatchRemote(
     val scheduled_at: Date,
     val modified_at: Date,
     val serie: SerieRemote,
-    val opponents: List<OpponentRemote>,
+    val opponents: List<OpponentsRemote.OpponentRemote>,
     val detailed_stats: Boolean,
     val rescheduled: Boolean,
     val streams_list: List<StreamRemote>,
@@ -68,17 +68,6 @@ data class MatchRemote(
         val winner_id: Int,
         val winner_type: String,
         val year: Int,
-    )
-
-    @Serializable
-    data class OpponentRemote(
-        val acronym: String,
-        val id: Int,
-        val image_url: String,
-        val location: String,
-        val modified_at: Date,
-        val name: String,
-        val slug: String
     )
 
     @Serializable
@@ -140,12 +129,6 @@ data class MatchRemote(
         ) : Stream()
     }
 
-    @Serializable
-    data class VideogameRemote(
-        val id: Int,
-        val name: String,
-        val slug: String,
-    )
 
     @Serializable
     data class ResultRemote(val score: Int, val team_id: Int)
