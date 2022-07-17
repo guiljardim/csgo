@@ -1,6 +1,7 @@
 package com.example.csgo.presentation.matches
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,6 +50,10 @@ class MatchesFragment : Fragment(), MatchesAdapter.OnItemClickListener {
 
                 Resource.Status.SUCCESS -> {
                     showProgress(false)
+                    Log.d(
+                        "GuilhermeResultInLayout",
+                        it.data?.map { status -> status.status }.toString()
+                    )
                     binding.recyclerView.adapter =
                         context?.let { context -> MatchesAdapter(context, it.data, this) }
                     binding.recyclerView.layoutManager = LinearLayoutManager(context)
