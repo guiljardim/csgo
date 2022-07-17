@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.csgo.R
 import com.example.csgo.databinding.FragmentMatchDetailsBinding
 import com.example.csgo.domain.model.Match
 import com.example.csgo.util.Resource
@@ -75,7 +77,11 @@ class MatchDetailsFragment : Fragment() {
     }
 
     private fun initViews(data: List<Match.Opponent>?) {
-        binding.toolbarTitleVolume.text = leagueAndSerieTitle
+        binding.toolbarMatchDetails.navigationIcon?.setTint(resources.getColor(R.color.white))
+        binding.toolbarMatchDetails.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+        binding.toolbarTitle.text = leagueAndSerieTitle
         binding.textViewDate.text = date
         data?.first()?.image_url?.let { binding.iconImageViewFirstOpponentDetails.image(it) }
         data?.last()?.image_url?.let { binding.iconImageViewSecondOpponentDetails.image(it) }

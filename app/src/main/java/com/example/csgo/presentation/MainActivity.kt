@@ -11,7 +11,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_Csgo)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_main)
 
+    }
+
+
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 }
