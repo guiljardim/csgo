@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -39,18 +40,26 @@ class MatchesFragment : Fragment(), MatchesAdapter.OnItemClickListener {
             when (it.status) {
 
                 Resource.Status.LOADING -> {
+                    showProgress(true)
                 }
 
                 Resource.Status.ERROR, Resource.Status.NETWORK_ERROR -> {
+                    showProgress(false)
                 }
 
                 Resource.Status.SUCCESS -> {
+                    showProgress(false)
                     binding.recyclerView.adapter =
                         context?.let { context -> MatchesAdapter(context, it.data, this) }
                     binding.recyclerView.layoutManager = LinearLayoutManager(context)
                 }
             }
         }
+    }
+
+    private fun showProgress(show: Boolean) {
+        binding.progressCircular.isVisible = show
+        binding.recyclerView.isVisible = !show
     }
 
     override fun onItemClickListener(id: Int, leagueSerie: String, date: String) {
