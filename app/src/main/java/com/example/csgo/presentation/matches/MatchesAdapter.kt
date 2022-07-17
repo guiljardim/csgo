@@ -47,13 +47,18 @@ class MatchesAdapter(
                 }
 
                 match?.leagueIcon?.let { iconImageLeague.image(it) }
-                textLeagueSerie.text =
-                    context.getString(R.string.league_serie, match?.leagueName, match?.serieName)
+                val leaguePlusSerie = context.getString(
+                    R.string.league_serie, match?.leagueName.orEmpty(),
+                    match?.serieName.orEmpty()
+                )
+                val dateFormatted = match?.begin_at.formatToPattern(context)
+
+                textLeagueSerie.text = leaguePlusSerie
 
                 if (match?.status == "running") {
                     tagStatus.text = context.getString(R.string.now)
                 } else {
-                    tagStatus.text = match?.begin_at.formatToPattern(context)
+                    tagStatus.text = dateFormatted
                     tagStatus.background =
                         AppCompatResources.getDrawable(context, R.drawable.tag_background_grey)
 
@@ -62,12 +67,8 @@ class MatchesAdapter(
                     match?.id?.let { id ->
                         listener.onItemClickListener(
                             id,
-                            context.getString(
-                                R.string.league_serie,
-                                match.leagueName,
-                                match.serieName
-                            ),
-                            match.begin_at.formatToPattern(context)
+                            leaguePlusSerie,
+                            dateFormatted
                         )
                     }
                 }
