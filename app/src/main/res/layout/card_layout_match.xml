@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_card_avatar"
+    android:layout_marginStart="@dimen/margin_left_card"
+    android:layout_marginEnd="@dimen/margin_right_card"
+    android:layout_marginBottom="@dimen/margin_bottom_card"
+    app:cardBackgroundColor="@color/blue_gray"
+    app:cardCornerRadius="@dimen/radius_avatar">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.csgo.components.AvatarImageView
+            android:id="@+id/icon_image_view_first_opponent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_image_avatar"
+            app:avatarSize="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_view_vs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/vs"
+            android:textColor="@color/gray_light"
+            android:textSize="@dimen/text_size_vs_card"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/icon_image_view_first_opponent"
+            app:layout_constraintLeft_toRightOf="@id/icon_image_view_first_opponent"
+            app:layout_constraintRight_toLeftOf="@id/icon_image_view_second_opponent"
+            app:layout_constraintTop_toTopOf="@id/icon_image_view_first_opponent" />
+
+        <com.example.csgo.components.AvatarImageView
+            android:id="@+id/icon_image_view_second_opponent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_image_avatar"
+            app:avatarSize="60dp"
+            app:layout_constraintBottom_toBottomOf="@id/icon_image_view_first_opponent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/icon_image_view_first_opponent" />
+
+
+        <TextView
+            android:id="@+id/tag_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tag_background"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="8dp"
+            android:textSize="12sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="agora" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="8dp"
+            android:background="#33FFFFFF"
+            app:layout_constraintBottom_toTopOf="@id/icon_image_league"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <com.example.csgo.components.AvatarImageView
+            android:id="@+id/icon_image_league"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="8dp"
+            app:avatarSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+
+        <TextView
+            android:id="@+id/text_league_serie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/gray_light"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/icon_image_league"
+            app:layout_constraintLeft_toRightOf="@id/icon_image_league"
+            app:layout_constraintTop_toTopOf="@id/icon_image_league"
+            tools:text="League + Serie" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
+
