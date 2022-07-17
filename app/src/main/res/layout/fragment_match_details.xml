@@ -6,6 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".presentation.matchDetails.MatchDetailsFragment">
 
+    <ProgressBar
+        android:id="@+id/progress_circular_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/details_screen_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="icon_image_view_first_opponent_details,text_view_first_opponent_name, text_view_vs, icon_image_view_second_opponent_details, text_view_second_opponent_name, text_view_date, recycler_view_players " />
+
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar_match_details"
         android:layout_width="match_parent"

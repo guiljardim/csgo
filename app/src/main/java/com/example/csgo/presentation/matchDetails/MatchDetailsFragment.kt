@@ -1,10 +1,10 @@
 package com.example.csgo.presentation.matchDetails
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -53,17 +53,24 @@ class MatchDetailsFragment : Fragment() {
             when (it.status) {
 
                 Resource.Status.LOADING -> {
+                    showProgress(true)
                 }
 
                 Resource.Status.ERROR, Resource.Status.NETWORK_ERROR -> {
-                    Log.d("GUILHERMEERROR", it.error.toString())
+                    showProgress(false)
                 }
 
                 Resource.Status.SUCCESS -> {
+                    showProgress(false)
                     initViews(it.data)
                 }
             }
         }
+    }
+
+    private fun showProgress(show: Boolean) {
+        binding.progressCircularDetails.isVisible = show
+        binding.detailsScreenGroup.isVisible = !show
     }
 
     private fun initViews(data: List<Match.Opponent>?) {
