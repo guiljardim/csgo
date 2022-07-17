@@ -1,11 +1,17 @@
 package com.example.csgo.data.model
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import java.util.*
 
 
 @Serializable
-data class OpponentsRemote(val opponent_type: String, val opponents: List<OpponentRemote>) {
+data class OpponentsRemote(
+    @SerialName("type")
+    val type: String?,
+    @SerialName("opponent")
+    val opponent: OpponentRemote
+) {
 
 
     @Serializable

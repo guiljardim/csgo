@@ -1,0 +1,6 @@
+<resources>
+    <declare-styleable name="AvatarImageView">
+        <attr name="avatarSize" format="dimension" />
+    </declare-styleable>
+
+</resources>

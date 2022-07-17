@@ -5,6 +5,9 @@ import com.example.csgo.data.api.MatchesService
 import com.example.csgo.data.api.OpponentsService
 import com.example.csgo.data.datasource.MatchesRemoteDataSource
 import com.example.csgo.data.datasource.OpponentsRemoteDataSource
+import com.example.csgo.data.repository.MatchesRepositoryImpl
+import com.example.csgo.domain.repository.MatchesRepository
+import com.example.csgo.domain.useCase.GetMatchesUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -62,5 +65,17 @@ class ApplicationModule {
     @Singleton
     fun provideOpponentsRemoteDataSource(opponentsService: OpponentsService) =
         OpponentsRemoteDataSource(opponentsService)
+
+    @Provides
+    @Singleton
+    fun provideMatchesRepository(matchesRemoteDataSource: MatchesRemoteDataSource): MatchesRepository =
+        MatchesRepositoryImpl(matchesRemoteDataSource)
+
+    @Provides
+    @Singleton
+    fun provideGetMatchesUseCase(matchesRepository: MatchesRepository) =
+        GetMatchesUseCase(matchesRepository)
+
+
 
 }

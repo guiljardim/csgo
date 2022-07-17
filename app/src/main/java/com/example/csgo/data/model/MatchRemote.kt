@@ -13,7 +13,8 @@ data class MatchRemote(
     val scheduled_at: Date,
     val modified_at: Date,
     val serie: SerieRemote,
-    val opponents: List<OpponentsRemote.OpponentRemote>,
+    @SerialName("opponents")
+    val opponents: List<OpponentsRemote>,
     val detailed_stats: Boolean,
     val rescheduled: Boolean,
     val streams_list: List<StreamRemote>,
