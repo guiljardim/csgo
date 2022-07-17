@@ -8,7 +8,9 @@ interface MatchesService {
 
     @GET("csgo/matches")
     suspend fun getMatchesSync(
+        @Query("sort") sort: String,
         @Query("filter[begin_at]") begin_at: String,
-        @Query("token") token: String,
+        @Query("filter[finished]") finished: Boolean,
+        @Query("token") token: String
     ): List<MatchRemote>
 }
