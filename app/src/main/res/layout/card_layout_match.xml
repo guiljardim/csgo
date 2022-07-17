@@ -19,25 +19,36 @@
             android:id="@+id/icon_image_view_first_opponent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_image_avatar"
             android:layout_marginBottom="@dimen/margin_bottom_avatar"
             app:avatarSize="@dimen/size_avatar"
             app:avatarType="circle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/guideline"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/text_view_first_opponent_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:ellipsize="end"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_top_first_team"
             android:fontFamily="@font/roboto_light"
             android:textSize="@dimen/text_size_first_team"
-            app:layout_constraintLeft_toLeftOf="@id/icon_image_view_first_opponent"
-            app:layout_constraintRight_toRightOf="@id/icon_image_view_first_opponent"
+            android:gravity="center"
+            android:lines="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/icon_image_view_first_opponent"
             tools:text="Time 1" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
 
         <TextView
             android:id="@+id/text_view_vs"
@@ -57,22 +68,25 @@
             android:id="@+id/icon_image_view_second_opponent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_image_avatar"
             app:avatarSize="@dimen/size_second_avatar"
             app:avatarType="circle"
+            app:layout_constraintLeft_toLeftOf="@id/guideline"
             app:layout_constraintBottom_toBottomOf="@id/icon_image_view_first_opponent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/icon_image_view_first_opponent" />
 
         <TextView
             android:id="@+id/text_view_second_opponent_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:ellipsize="end"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_top_second_team"
             android:fontFamily="@font/roboto_light"
             android:textSize="@dimen/text_size_second_team"
-            app:layout_constraintLeft_toLeftOf="@id/icon_image_view_second_opponent"
-            app:layout_constraintRight_toRightOf="@id/icon_image_view_second_opponent"
+            android:gravity="center"
+            android:lines="1"
+            app:layout_constraintLeft_toLeftOf="@id/guideline"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/icon_image_view_second_opponent"
             tools:text="Time 2" />
 
