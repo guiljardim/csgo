@@ -13,7 +13,6 @@ class MatchesRemoteDataSource @Inject constructor(
     suspend operator fun invoke(apiKey: String): List<MatchRemote> {
         return service.getMatchesSync(
             DateFormat.format("yyyy-MM-dd", Date()).toString(),
-            false,
             apiKey,
         )
     }

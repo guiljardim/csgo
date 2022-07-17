@@ -1,6 +1,5 @@
 package com.example.csgo.domain.model
 
-import kotlinx.serialization.Serializable
 import java.util.*
 
 data class Match(
@@ -12,11 +11,17 @@ data class Match(
     val status: String?,
     val opponents: List<Opponent>?
 ) {
-    @Serializable
     data class Opponent(
         val id: Int?,
         val image_url: String?,
         val name: String?,
+        val player: List<Player>? = null
+    )
+
+    data class Player(
+        val image_url: String?,
+        val name: String?,
+        val nickname: String? = null,
     )
 }
 

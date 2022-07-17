@@ -14,9 +14,9 @@
         android:layout_centerHorizontal="true"
         android:elevation="@dimen/elevation_card_view_avatar"
         android:innerRadius="0dp"
-        android:shape="ring"
         android:thicknessRatio="1.9"
-        app:cardCornerRadius="@dimen/radius_card_view_avatar"
+        android:shape="rectangle"
+        app:cardBackgroundColor="@color/gray"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

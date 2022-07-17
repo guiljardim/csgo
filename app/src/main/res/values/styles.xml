@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CustomCardViewStyleLeft" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_custom_corners_left
+        </item>
+    </style>
+
+
+    <style name="CustomCardViewStyleRight" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay_card_custom_corners_right
+        </item>
+    </style>
+
+
+    <style name="ShapeAppearanceOverlay_card_custom_corners_left" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">10dp</item>
+        <item name="cornerSizeBottomRight">10dp</item>
+    </style>
+
+    <style name="AvatarCardViewCircle" parent="">
+        <item name="cardCornerRadius">@dimen/radius_card_view_avatar</item>
+    </style>
+
+    <style name="AvatarCardViewSquare" parent="">
+        <item name="cardCornerRadius">@dimen/radius_card_view_avatar_square</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay_card_custom_corners_right" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeBottomLeft">10dp</item>
+    </style>
+
+</resources>

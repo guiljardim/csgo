@@ -11,9 +11,12 @@
         <entry key="app/src/main/res/drawable/tag_background_grey.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/tag_card.xml" value="0.2095" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.203125" />
-        <entry key="app/src/main/res/layout/avatar_image_view.xml" value="0.3875" />
-        <entry key="app/src/main/res/layout/card_layout_match.xml" value="1.1224612295342404" />
+        <entry key="app/src/main/res/layout/avatar_image_view.xml" value="1.0622268676757813" />
+        <entry key="app/src/main/res/layout/card_layout_match.xml" value="0.8252336448598131" />
+        <entry key="app/src/main/res/layout/fragment_match_details.xml" value="0.2741587320963542" />
         <entry key="app/src/main/res/layout/fragment_matches.xml" value="0.203125" />
+        <entry key="app/src/main/res/layout/item_match_details.xml" value="0.5056538899739583" />
+        <entry key="app/src/main/res/layout/item_match_details_right.xml" value="0.375" />
       </map>
     </option>
   </component>

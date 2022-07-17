@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_root"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -19,10 +20,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_image_avatar"
-            app:avatarSize="60dp"
+            android:layout_marginBottom="@dimen/margin_bottom_avatar"
+            app:avatarSize="@dimen/size_avatar"
+            app:avatarType="circle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_view_first_opponent_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_first_team"
+            android:fontFamily="@font/roboto_light"
+            android:textSize="@dimen/text_size_first_team"
+            app:layout_constraintLeft_toLeftOf="@id/icon_image_view_first_opponent"
+            app:layout_constraintRight_toRightOf="@id/icon_image_view_first_opponent"
+            app:layout_constraintTop_toBottomOf="@id/icon_image_view_first_opponent"
+            tools:text="Time 1" />
 
         <TextView
             android:id="@+id/text_view_vs"
@@ -43,30 +58,43 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_image_avatar"
-            app:avatarSize="60dp"
+            app:avatarSize="@dimen/size_second_avatar"
+            app:avatarType="circle"
             app:layout_constraintBottom_toBottomOf="@id/icon_image_view_first_opponent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/icon_image_view_first_opponent" />
 
+        <TextView
+            android:id="@+id/text_view_second_opponent_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_second_team"
+            android:fontFamily="@font/roboto_light"
+            android:textSize="@dimen/text_size_second_team"
+            app:layout_constraintLeft_toLeftOf="@id/icon_image_view_second_opponent"
+            app:layout_constraintRight_toRightOf="@id/icon_image_view_second_opponent"
+            app:layout_constraintTop_toBottomOf="@id/icon_image_view_second_opponent"
+            tools:text="Time 2" />
 
         <TextView
             android:id="@+id/tag_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/tag_background"
-            android:paddingLeft="10dp"
-            android:paddingTop="5dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="8dp"
-            android:textSize="12sp"
+            android:paddingStart="@dimen/padding_left_tag"
+            android:paddingTop="@dimen/padding_top_tag"
+            android:paddingEnd="@dimen/padding_right_tag"
+            android:paddingBottom="@dimen/padding_bottom_tag"
+            android:textSize="@dimen/text_size_tag"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="agora" />
 
         <View
+            android:id="@+id/view_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="@dimen/margin_bottom_view_line"
             android:background="#33FFFFFF"
             app:layout_constraintBottom_toTopOf="@id/icon_image_league"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -76,9 +104,9 @@
             android:id="@+id/icon_image_league"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginBottom="8dp"
-            app:avatarSize="20dp"
+            android:layout_marginStart="@dimen/margin_start_avatar_league"
+            android:layout_marginBottom="@dimen/margin_bottom_avatar_league"
+            app:avatarSize="@dimen/size_avatar_league"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent" />
 
@@ -90,7 +118,7 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/roboto_regular"
             android:textColor="@color/gray_light"
-            android:textSize="12sp"
+            android:textSize="@dimen/text_size_league_serie"
             app:layout_constraintBottom_toBottomOf="@id/icon_image_league"
             app:layout_constraintLeft_toRightOf="@id/icon_image_league"
             app:layout_constraintTop_toTopOf="@id/icon_image_league"
