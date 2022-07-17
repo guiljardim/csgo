@@ -8,10 +8,10 @@ import javax.inject.Inject
 class MatchesRemoteDataSource @Inject constructor(
     private val service: MatchesService
 ) {
-    suspend operator fun invoke(apiKey: String): List<MatchRemote> {
+    suspend operator fun invoke(apiKey: String, sort: String, status: String): List<MatchRemote> {
         return service.getMatchesSync(
-            "-status, begin_at",
-            "running, not_started",
+            sort,
+            status,
             apiKey,
         )
     }

@@ -12,8 +12,9 @@ class GetMatchesUseCase @Inject constructor(
     private val matchesRepository: MatchesRepository,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
+
     suspend operator fun invoke(): Flow<Resource<List<Match>>> = flow {
-        emit(matchesRepository.getMatches())
+        emit(matchesRepository.getMatches(SORT, STATUS))
     }.map {
         it.let {
             Resource.success(it)
@@ -23,6 +24,11 @@ class GetMatchesUseCase @Inject constructor(
     }.catch {
         emit(Resource.error(it))
     }.flowOn(dispatcher)
+
+    companion object {
+        const val STATUS = "running, not_started"
+        const val SORT = "-status, begin_at"
+    }
 
 
 }

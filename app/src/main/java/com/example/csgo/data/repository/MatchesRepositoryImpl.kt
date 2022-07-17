@@ -10,8 +10,8 @@ import javax.inject.Inject
 class MatchesRepositoryImpl @Inject constructor(private val matchesRemoteDataSource: MatchesRemoteDataSource) :
     MatchesRepository {
 
-    override suspend fun getMatches(): List<Match> {
-        return matchesRemoteDataSource.invoke(API_KEY).mapToMatch()
+    override suspend fun getMatches(sort: String, status: String): List<Match> {
+        return matchesRemoteDataSource.invoke(API_KEY, sort, status).mapToMatch()
 
     }
 
