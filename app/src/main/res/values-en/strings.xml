@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">csgo</string>
-    <string name="matches">Partidas</string>
+    <string name="matches">Matches</string>
     <string name="vs">vs</string>
     <string name="league_serie">%1$s %2$s</string>
-    <string name="now">Agora</string>
-    <string name="today">Hoje</string>
+    <string name="now">Now</string>
+    <string name="today">Today</string>
 </resources>
