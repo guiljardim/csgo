@@ -1,13 +1,16 @@
 package com.example.csgo.di
 
-import com.example.csgo.BuildConfig
+import com.example.csgo.BuildConfig.*
 import com.example.csgo.data.api.MatchesService
 import com.example.csgo.data.api.OpponentsService
 import com.example.csgo.data.datasource.MatchesRemoteDataSource
 import com.example.csgo.data.datasource.OpponentsRemoteDataSource
 import com.example.csgo.data.repository.MatchesRepositoryImpl
+import com.example.csgo.data.repository.OpponentsRepositoryImpl
 import com.example.csgo.domain.repository.MatchesRepository
+import com.example.csgo.domain.repository.OpponentsRepository
 import com.example.csgo.domain.useCase.GetMatchesUseCase
+import com.example.csgo.domain.useCase.GetOpponentsDetailsUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,11 +25,11 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class ApplicationModule {
     @Provides
-    fun provideBaseUrl() = BuildConfig.BASE_URL
+    fun provideBaseUrl() = BASE_URL
 
     @Provides
     @Singleton
-    fun provideOkHttpClient() = if (BuildConfig.DEBUG) {
+    fun provideOkHttpClient() = if (DEBUG) {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         OkHttpClient.Builder()
@@ -73,9 +76,18 @@ class ApplicationModule {
 
     @Provides
     @Singleton
+    fun provideOpponentsRepository(opponentsRemoteDataSource: OpponentsRemoteDataSource): OpponentsRepository =
+        OpponentsRepositoryImpl(opponentsRemoteDataSource)
+
+    @Provides
+    @Singleton
     fun provideGetMatchesUseCase(matchesRepository: MatchesRepository) =
         GetMatchesUseCase(matchesRepository)
 
+    @Provides
+    @Singleton
+    fun provideGetOpponentsDetailsUseCase(opponentsRepository: OpponentsRepository) =
+        GetOpponentsDetailsUseCase(opponentsRepository)
 
 
 }

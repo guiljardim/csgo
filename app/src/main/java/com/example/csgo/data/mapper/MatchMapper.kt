@@ -9,7 +9,7 @@ fun List<MatchRemote>.mapToMatch(): List<Match> {
             Match.Opponent(
                 opponents.opponent.id,
                 opponents.opponent.image_url,
-                opponents.opponent.name
+                opponents.opponent.name,
             )
         }
 
