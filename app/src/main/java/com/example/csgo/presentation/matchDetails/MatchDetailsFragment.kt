@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.csgo.databinding.FragmentMatchDetailsBinding
 import com.example.csgo.domain.model.Match
 import com.example.csgo.util.Resource
+import com.example.csgo.util.mapToShow
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -89,23 +90,6 @@ class MatchDetailsFragment : Fragment() {
 
     }
 
-}
-
-fun List<Match.Player>.mapToShow(player: List<Match.Player>?): List<PlayerToShow> {
-    val playerToShow: MutableList<PlayerToShow> = mutableListOf()
-    for ((i, v) in this.withIndex()) {
-        playerToShow.add(
-            PlayerToShow(
-                v.name,
-                v.nickname,
-                v.image_url,
-                player?.get(i)?.name,
-                player?.get(i)?.nickname,
-                player?.get(i)?.image_url
-            )
-        )
-    }
-    return playerToShow
 }
 
 

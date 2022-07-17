@@ -53,7 +53,7 @@ class MatchesAdapter(
                 if (match?.status == "running") {
                     tagStatus.text = context.getString(R.string.now)
                 } else {
-                    tagStatus.text = match?.begin_at.formatToPattern()
+                    tagStatus.text = match?.begin_at.formatToPattern(context)
                     tagStatus.background =
                         AppCompatResources.getDrawable(context, R.drawable.tag_background_grey)
 
@@ -67,7 +67,7 @@ class MatchesAdapter(
                                 match.leagueName,
                                 match.serieName
                             ),
-                            match.begin_at.formatToPattern()
+                            match.begin_at.formatToPattern(context)
                         )
                     }
                 }
