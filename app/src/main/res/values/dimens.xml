@@ -34,4 +34,19 @@
     <dimen name="margin_bottom_avatar_league">8dp</dimen>
     <dimen name="size_avatar_league">20dp</dimen>
     <dimen name="text_size_league_serie">12sp</dimen>
+    <dimen name="title_text_size_details">16sp</dimen>
+    <dimen name="padding_end_details">5dp</dimen>
+    <dimen name="margin_avatar_details">95dp</dimen>
+    <dimen name="margin_top_avatar_details">20dp</dimen>
+    <dimen name="margin_top_date_details">20dp</dimen>
+    <dimen name="text_size_date_details">14sp</dimen>
+    <dimen name="height_item_details">54dp</dimen>
+    <dimen name="margin_item_details">24dp</dimen>
+    <dimen name="margin_end_item_details">6dp</dimen>
+    <dimen name="text_size_nickname_item_details">14sp</dimen>
+    <dimen name="margin_name_item_details">20dp</dimen>
+    <dimen name="text_size_name_item_details">12sp</dimen>
+    <dimen name="margin_avatar_item_details">95dp</dimen>
+    <dimen name="margin_end_avatar_item_details">11dp</dimen>
+    <dimen name="avatar_size_item_details">40dp</dimen>
 </resources>
