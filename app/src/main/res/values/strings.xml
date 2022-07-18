@@ -5,4 +5,6 @@
     <string name="league_serie">%1$s %2$s</string>
     <string name="now">Agora</string>
     <string name="today">Hoje</string>
+    <string name="error_details">Não foi possível carregar os detalhes, favor tente novamente</string>
+    <string name="error_list_matches">Ocorreu um erro ao carregar a lista de partidas</string>
 </resources>
