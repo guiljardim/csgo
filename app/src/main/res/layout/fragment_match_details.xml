@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.matchDetails.MatchDetailsFragment">
+
+    <ProgressBar
+        android:id="@+id/progress_circular_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/details_screen_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="icon_image_view_first_opponent_details,text_view_first_opponent_name, text_view_vs, icon_image_view_second_opponent_details, text_view_second_opponent_name, text_view_date, recycler_view_players " />
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_match_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="?attr/homeAsUpIndicator">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto_bold"
+            android:paddingEnd="@dimen/padding_end_details"
+            android:textSize="@dimen/title_text_size_details"
+            tools:text="League + serie" />
+
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <com.example.csgo.components.AvatarImageView
+        android:id="@+id/icon_image_view_first_opponent_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_avatar_details"
+        android:layout_marginBottom="@dimen/margin_bottom_avatar"
+        android:layout_marginTop="@dimen/margin_top_avatar_details"
+        app:avatarSize="@dimen/size_avatar"
+        app:avatarType="circle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_match_details" />
+
+    <TextView
+        android:id="@+id/text_view_first_opponent_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_first_team"
+        android:fontFamily="@font/roboto_light"
+        android:textSize="@dimen/text_size_first_team"
+        app:layout_constraintLeft_toLeftOf="@id/icon_image_view_first_opponent_details"
+        app:layout_constraintRight_toRightOf="@id/icon_image_view_first_opponent_details"
+        app:layout_constraintTop_toBottomOf="@id/icon_image_view_first_opponent_details"
+        tools:text="Time 1" />
+
+    <TextView
+        android:id="@+id/text_view_vs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/vs"
+        android:textColor="@color/gray_light"
+        android:textSize="@dimen/text_size_vs_card"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/icon_image_view_first_opponent_details"
+        app:layout_constraintLeft_toRightOf="@id/icon_image_view_first_opponent_details"
+        app:layout_constraintRight_toLeftOf="@id/icon_image_view_second_opponent_details"
+        app:layout_constraintTop_toTopOf="@id/icon_image_view_first_opponent_details" />
+
+    <com.example.csgo.components.AvatarImageView
+        android:id="@+id/icon_image_view_second_opponent_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_avatar_details"
+        app:avatarSize="@dimen/size_second_avatar"
+        app:avatarType="circle"
+        app:layout_constraintBottom_toBottomOf="@id/icon_image_view_first_opponent_details"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/icon_image_view_first_opponent_details" />
+
+    <TextView
+        android:id="@+id/text_view_second_opponent_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_second_team"
+        android:fontFamily="@font/roboto_light"
+        android:textSize="@dimen/text_size_second_team"
+        app:layout_constraintLeft_toLeftOf="@id/icon_image_view_second_opponent_details"
+        app:layout_constraintRight_toRightOf="@id/icon_image_view_second_opponent_details"
+        app:layout_constraintTop_toBottomOf="@id/icon_image_view_second_opponent_details"
+        tools:text="Time 2" />
+
+    <TextView
+        android:id="@+id/text_view_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_date_details"
+        android:fontFamily="@font/roboto_bold"
+        android:textSize="@dimen/text_size_date_details"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_first_opponent_name"
+        tools:text="Hoje, 21:00" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_players"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_date"
+        tools:listitem="@layout/item_match_details" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

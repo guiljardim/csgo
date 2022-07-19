@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/bg_gradient.xml" value="0.2095" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.3765" />
+        <entry key="app/src/main/res/drawable/splash_background.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/splash_icon.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/tag_background.xml" value="0.2095" />
+        <entry key="app/src/main/res/drawable/tag_background_grey.xml" value="0.1645" />
+        <entry key="app/src/main/res/drawable/tag_card.xml" value="0.2095" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.203125" />
+        <entry key="app/src/main/res/layout/avatar_image_view.xml" value="1.0622268676757813" />
+        <entry key="app/src/main/res/layout/card_layout_match.xml" value="0.8252336448598131" />
+        <entry key="app/src/main/res/layout/fragment_match_details.xml" value="0.2741587320963542" />
+        <entry key="app/src/main/res/layout/fragment_matches.xml" value="0.203125" />
+        <entry key="app/src/main/res/layout/item_match_details.xml" value="0.5056538899739583" />
+        <entry key="app/src/main/res/layout/item_match_details_right.xml" value="0.375" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/player_name_first"
+        style="@style/CustomCardViewStyleLeft"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_item_details"
+        android:layout_marginTop="@dimen/margin_item_details"
+        android:layout_marginEnd="@dimen/margin_end_item_details"
+        app:cardBackgroundColor="@color/blue_gray"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_view_nickname_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/text_size_nickname_item_details"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/icon_image_view_player_left"
+                tools:text="Nickname" />
+
+            <TextView
+                android:id="@+id/text_view_name_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_name_item_details"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/gray_20"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:textSize="@dimen/text_size_name_item_details"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/icon_image_view_player_left"
+                app:layout_constraintTop_toBottomOf="@id/text_view_nickname_left"
+                tools:text="Nome Jogador" />
+
+            <com.example.csgo.components.AvatarImageView
+                android:id="@+id/icon_image_view_player_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_avatar_item_details"
+                android:layout_marginEnd="@dimen/margin_end_avatar_item_details"
+                android:layout_marginBottom="@dimen/margin_bottom_avatar"
+                app:avatarSize="@dimen/avatar_size_item_details"
+                app:avatarType="square"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/player_name_second"
+        style="@style/CustomCardViewStyleRight"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_item_details"
+        android:layout_marginTop="@dimen/margin_item_details"
+        android:layout_marginEnd="@dimen/margin_end_item_details"
+        app:cardBackgroundColor="@color/blue_gray"
+        app:layout_constraintLeft_toRightOf="@id/guideline"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_view_nickname_right"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:textSize="@dimen/text_size_nickname_item_details"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/icon_image_view_player_right"
+                tools:text="Nickname" />
+
+            <TextView
+                android:id="@+id/text_view_name_right"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_name_item_details"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/gray_20"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:textSize="@dimen/text_size_name_item_details"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_view_nickname_right"
+                app:layout_constraintLeft_toRightOf="@id/icon_image_view_player_right"
+                tools:text="Nome Jogador" />
+
+            <com.example.csgo.components.AvatarImageView
+                android:id="@+id/icon_image_view_player_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_end_avatar_item_details"
+                android:layout_marginEnd="@dimen/margin_avatar_item_details"
+                android:layout_marginBottom="@dimen/margin_bottom_avatar"
+                app:avatarSize="@dimen/avatar_size_item_details"
+                app:avatarType="square"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

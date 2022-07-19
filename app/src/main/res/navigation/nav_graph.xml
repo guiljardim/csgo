@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/matches_fragment">
+
+    <fragment
+        android:id="@+id/matches_fragment"
+        android:name="com.example.csgo.presentation.matches.MatchesFragment"
+        android:label="deposit_information_fragment"
+        tools:layout="@layout/fragment_matches">
+        <action
+            android:id="@+id/action_matches_fragment_to_matches_details_fragment"
+            app:destination="@id/matches_details_fragment">
+            <argument
+                android:name="id"
+                android:defaultValue="1"
+                app:argType="integer" />
+            <argument
+                android:name="leagueSerie"
+                android:defaultValue="league + serie"
+                app:argType="string" />
+
+            <argument
+                android:name="date"
+                android:defaultValue="Hoje"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/matches_details_fragment"
+        android:name="com.example.csgo.presentation.matchDetails.MatchDetailsFragment"
+        android:label="deposit_information_fragment"
+        tools:layout="@layout/fragment_match_details" />
+
+</navigation>
