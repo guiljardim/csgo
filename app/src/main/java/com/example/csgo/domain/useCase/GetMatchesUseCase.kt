@@ -13,8 +13,8 @@ class GetMatchesUseCase @Inject constructor(
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
 
-    suspend operator fun invoke(): Flow<Resource<List<Match>>> = flow {
-        emit(matchesRepository.getMatches(SORT, STATUS))
+    suspend operator fun invoke(page: Int): Flow<Resource<List<Match>>> = flow {
+        emit(matchesRepository.getMatches(SORT, STATUS, PER_PAGE, page))
     }.map {
         it.let {
             Resource.success(it)
@@ -28,6 +28,7 @@ class GetMatchesUseCase @Inject constructor(
     companion object {
         const val STATUS = "running, not_started"
         const val SORT = "-status, begin_at"
+        const val PER_PAGE = 20
     }
 
 

@@ -10,8 +10,13 @@ import javax.inject.Inject
 class MatchesRepositoryImpl @Inject constructor(private val matchesRemoteDataSource: MatchesRemoteDataSource) :
     MatchesRepository {
 
-    override suspend fun getMatches(sort: String, status: String): List<Match> {
-        return matchesRemoteDataSource.invoke(API_KEY, sort, status).mapToMatch()
+    override suspend fun getMatches(
+        sort: String,
+        status: String,
+        per_page: Int,
+        page: Int
+    ): List<Match> {
+        return matchesRemoteDataSource.invoke(API_KEY, sort, status, per_page, page).mapToMatch()
 
     }
 

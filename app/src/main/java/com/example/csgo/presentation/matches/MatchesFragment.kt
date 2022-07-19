@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.csgo.R
 import com.example.csgo.databinding.FragmentMatchesBinding
+import com.example.csgo.domain.model.Match
 import com.example.csgo.presentation.matchDetails.MatchDetailsFragment.Companion.DATE_RESULT
 import com.example.csgo.presentation.matchDetails.MatchDetailsFragment.Companion.ID_DETAILS_RESULT
 import com.example.csgo.presentation.matchDetails.MatchDetailsFragment.Companion.LEAGUE_SERIE_DETAILS_RESULT
@@ -20,28 +21,54 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class MatchesFragment : Fragment(), MatchesAdapter.OnItemClickListener {
+class MatchesFragment : Fragment(), MatchesAdapter.OnItemClickListener,
+    MatchesAdapter.OnBottomReachedListener {
+
+    companion object {
+        private const val INSTANCE_STATE_PAGE = "INSTANCE_STATE_PAGE"
+        private const val INSTANCE_STATE_TOTAL_ITEMS = "INSTANCE_STATE_TOTAL_ITEMS"
+    }
 
     private val viewModel: MatchesViewModel by viewModels()
     private lateinit var binding: FragmentMatchesBinding
+    private var listOfMatches: MutableList<Match> = mutableListOf()
+    private var matchesAdapter: MatchesAdapter? = null
+    private var page = 1
+    private var totalItems: Int = 0
 
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(INSTANCE_STATE_PAGE, page)
+        outState.putInt(INSTANCE_STATE_TOTAL_ITEMS, totalItems)
+        super.onSaveInstanceState(outState)
+    }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState != null) {
+            page = savedInstanceState.getInt(INSTANCE_STATE_PAGE)
+            totalItems = savedInstanceState.getInt(INSTANCE_STATE_TOTAL_ITEMS)
+            return
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMatchesBinding.inflate(inflater, container, false)
-        viewModel.getMatches()
+        viewModel.getMatches(page, false)
         observer()
         return binding.root
     }
 
     private fun observer() {
         viewModel.matches.observe(viewLifecycleOwner) {
-            when (it.status) {
+            when (it.first.status) {
 
                 Resource.Status.LOADING -> {
-                    showProgress(true)
+                    showProgress(!it.second)
                 }
 
                 Resource.Status.ERROR, Resource.Status.NETWORK_ERROR -> {
@@ -50,21 +77,29 @@ class MatchesFragment : Fragment(), MatchesAdapter.OnItemClickListener {
                         context,
                         getString(R.string.error_list_matches),
                         Toast.LENGTH_SHORT
-                    )
-                        .show()
-                    viewModel.getMatches()
-
+                    ).show()
                 }
 
                 Resource.Status.SUCCESS -> {
                     showProgress(false)
-                    binding.recyclerView.adapter =
-                        context?.let { context -> MatchesAdapter(context, it.data, this) }
-                    binding.recyclerView.layoutManager = LinearLayoutManager(context)
+                    totalItems = it.first.data?.first()?.totalItem ?: 0
+                    it.first.data?.let { match -> listOfMatches.addAll(match) }
+                    createMatchList()
+                    if (it.second) {
+                        matchesAdapter?.notifyDataSetChanged()
+                    }
                 }
             }
         }
     }
+
+    private fun createMatchList() {
+        matchesAdapter = context?.let { MatchesAdapter(it, listOfMatches, this, this) }
+        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        binding.recyclerView.adapter = matchesAdapter
+
+    }
+
 
     private fun showProgress(show: Boolean) {
         binding.progressCircular.isVisible = show
@@ -79,6 +114,16 @@ class MatchesFragment : Fragment(), MatchesAdapter.OnItemClickListener {
                 putString(LEAGUE_SERIE_DETAILS_RESULT, leagueSerie)
                 putString(DATE_RESULT, date)
             })
+    }
+
+    override fun onBottomReached() {
+        if (listOfMatches.size <= totalItems) {
+            viewModel.onScrollEnded(page)
+            page++
+        } else {
+            matchesAdapter?.isLoading(false)
+        }
+
     }
 
 

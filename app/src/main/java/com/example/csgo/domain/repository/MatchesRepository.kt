@@ -4,5 +4,5 @@ import com.example.csgo.domain.model.Match
 
 interface MatchesRepository {
 
-    suspend fun getMatches(sort: String, status: String): List<Match>
+    suspend fun getMatches(sort: String, status: String, per_page: Int, page: Int): List<Match>
 }

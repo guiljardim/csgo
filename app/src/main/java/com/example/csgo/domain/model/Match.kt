@@ -9,7 +9,8 @@ data class Match(
     val leagueIcon: String?,
     val serieName: String?,
     val status: String?,
-    val opponents: List<Opponent>?
+    val opponents: List<Opponent>?,
+    val totalItem: Int?,
 ) {
     data class Opponent(
         val id: Int?,
