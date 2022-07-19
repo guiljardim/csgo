@@ -34,9 +34,9 @@ App have support english and portuguese
 
 ## Running the tests
 
-go to the folder **app.src.test[unitTest]**
-right click
-Run Tests
+- go to the folder **app.src.test[unitTest]**
+- right click
+- Run Tests
 
 
 ## Installation
