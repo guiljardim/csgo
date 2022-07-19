@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/13336001/179811676-2cc633fb-09aa-47c7-baf9-61cbe19ea99e.png)
+
 
 ## Introduction
 this app list matches of CS:GO and show details of this matches
@@ -46,6 +48,20 @@ https://drive.google.com/file/d/1MotUoCHTmSfcvRDYB7V9ZE5zfOQSwuwh/view?usp=shari
 - Gson
 - Coroutines
 - Hilt
+
+
+<table>
+<tr>
+<th> App </th>
+</tr>
+<tr>
+<td>
+
+![video](https://user-images.githubusercontent.com/13336001/179811957-65529f7a-b2a4-4dfb-bc95-dde310be0d9f.mp4)
+
+</td>
+</tr>
+</table>
 
 
 ## Authors
