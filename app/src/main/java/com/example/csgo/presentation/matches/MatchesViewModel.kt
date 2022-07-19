@@ -17,26 +17,33 @@ import javax.inject.Inject
 class MatchesViewModel @Inject constructor(private val getMatchesUseCase: GetMatchesUseCase) :
     ViewModel() {
 
-    val matches = MutableLiveData<Resource<List<Match>>>()
+    private var listOfMatches: MutableList<Match> = mutableListOf()
 
-    fun getMatches() {
+
+    val matches = MutableLiveData<Pair<Resource<List<Match>>, Boolean>>()
+
+    fun getMatches(page: Int, isFromLoadMore: Boolean) {
         viewModelScope.launch {
-            getMatchesUseCase()
+            getMatchesUseCase(page)
                 .map { resource ->
                     when (resource.status) {
                         Resource.Status.LOADING -> {
-                            matches.postValue(Resource.loading())
+                            matches.postValue(Pair(Resource.loading(), isFromLoadMore))
                         }
                         Resource.Status.SUCCESS -> {
-                            matches.postValue(Resource.success(resource.data))
+                            matches.postValue(Pair(Resource.success(resource.data), isFromLoadMore))
                         }
                         else -> {
-                            matches.postValue(Resource.error(resource.error))
+                            matches.postValue(Pair(Resource.error(resource.error), isFromLoadMore))
                         }
                     }
                 }
                 .stateIn(viewModelScope)
         }
+    }
+
+    fun onScrollEnded(page: Int) {
+        getMatches(page, true)
     }
 }
 

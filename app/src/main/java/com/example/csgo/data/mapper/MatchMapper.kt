@@ -2,9 +2,10 @@ package com.example.csgo.data.mapper
 
 import com.example.csgo.data.model.MatchRemote
 import com.example.csgo.domain.model.Match
+import retrofit2.Response
 
-fun List<MatchRemote>.mapToMatch(): List<Match> {
-    return this.map {
+fun Response<List<MatchRemote>>.mapToMatch(): List<Match> {
+    return this.body()?.map {
         val opponents = it.opponents.map { opponents ->
             Match.Opponent(
                 opponents.opponent.id,
@@ -20,8 +21,9 @@ fun List<MatchRemote>.mapToMatch(): List<Match> {
             it.league.image_url,
             it.serie.name,
             it.status,
-            opponents
+            opponents,
+            this.headers()["X-Total"]?.toInt()
         )
-    }
+    } ?: emptyList()
 
 }
