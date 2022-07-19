@@ -1,56 +1,68 @@
+![image](https://user-images.githubusercontent.com/13336001/179811676-2cc633fb-09aa-47c7-baf9-61cbe19ea99e.png)
 
-this app is to search for users and see their codeWars challenges
+
+## Introduction
+this app list matches of CS:GO and show details of this matches
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ## Installation
 Clone this repository and import into **Android Studio**
 
 Using SSH:
 ```bash
-git clone git@github.com:guiljardim/codeWars.git
+git clone git@github.com:guiljardim/csgo.git
 ```
 
 Using HTTPS:
 ```bash
-git clone https://github.com/guiljardim/codeWars.git
+git clone https://github.com/guiljardim/csgo.git
 ```
 
 ### Observation
-App have support to dark mode
+App have support english and portuguese
 
+## In this branch you'll find:
+*   A single-activity architecture, using **[Navigation Compose](https://developer.android.com/jetpack/compose/navigation)**.
+*   A presentation layer that contains a Fragment(View) and a **ViewModel** per screen.
+*   Reactive using **[Flow](https://developer.android.com/kotlin/flow)** and **[coroutines](https://kotlinlang.org/docs/coroutines-overview.html)** for asynchronous operations.
+*   A **data layer** with a repository and data sources.
+*   Dependency injection using [Hilt](https://developer.android.com/training/dependency-injection/hilt-android).
 
-### Configuration
-
-```
-CompileSdkVersion: 30
-BuildToolsVersion: 30.0.0
-minSdkVersion: 21
-targetSdkVersion: 30
-kotlin version: 1.31.61
-```
 
 ## Running the tests
 
-go to the folder **app.src.androidTest.java.com.example.codewars**
+- go to the folder **app.src.test[unitTest]**
+- right click
+- Run Tests
 
+
+## Installation
+https://drive.google.com/file/d/1MotUoCHTmSfcvRDYB7V9ZE5zfOQSwuwh/view?usp=sharing
 
 ## Libs
 
 - Retrofit
-- ConstraintLayout
-- Lifecycle
-- Junit
-- Espresso
 - Gson
-- RxJava2
-- Fragments
-- Dagger
-- ReycleView
-- CardView
-- Material Desing
+- Coroutines
+- Hilt
+
+
+<table>
+<tr>
+<th> App </th>
+</tr>
+<tr>
+<td>
+
+![video](https://user-images.githubusercontent.com/13336001/179811957-65529f7a-b2a4-4dfb-bc95-dde310be0d9f.mp4)
+
+</td>
+</tr>
+</table>
+
 
 ## Authors
 
