@@ -10,7 +10,7 @@ import javax.inject.Inject
 class OpponentsRepositoryImpl @Inject constructor(private val opponentsRemoteDataSource: OpponentsRemoteDataSource) :
     OpponentsRepository {
     override suspend fun getOpponents(id: Int): List<Match.Opponent>? {
-        return opponentsRemoteDataSource.invoke(API_KEY, id)
-            .mapToOpponent()
+        return opponentsRemoteDataSource.invoke(API_KEY, id).body()
+            ?.mapToOpponent()
     }
 }

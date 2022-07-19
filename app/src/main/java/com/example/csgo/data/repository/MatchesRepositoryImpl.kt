@@ -15,8 +15,11 @@ class MatchesRepositoryImpl @Inject constructor(private val matchesRemoteDataSou
         status: String,
         per_page: Int,
         page: Int
-    ): List<Match> {
-        return matchesRemoteDataSource.invoke(API_KEY, sort, status, per_page, page).mapToMatch()
+    ): List<Match>? {
+        val result = matchesRemoteDataSource.invoke(API_KEY, sort, status, per_page, page)
+        return result.body()?.mapToMatch(
+            result.headers()["X-Total"]?.toInt() ?: 0
+        )
 
     }
 
