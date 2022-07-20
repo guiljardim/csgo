@@ -42,6 +42,13 @@ class MatchesFragment : Fragment(), MatchesAdapter.OnItemClickListener,
         super.onSaveInstanceState(outState)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.getMatches(page, false)
+        observer()
+        createMatchList()
+        super.onViewCreated(view, savedInstanceState)
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,8 +64,6 @@ class MatchesFragment : Fragment(), MatchesAdapter.OnItemClickListener,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMatchesBinding.inflate(inflater, container, false)
-        viewModel.getMatches(page, false)
-        observer()
         return binding.root
     }
 
@@ -83,7 +88,6 @@ class MatchesFragment : Fragment(), MatchesAdapter.OnItemClickListener,
                     showProgress(false)
                     totalItems = it.first.data?.first()?.totalItem ?: 0
                     it.first.data?.let { match -> listOfMatches.addAll(match) }
-                    createMatchList()
                     if (it.second) {
                         matchesAdapter?.notifyDataSetChanged()
                     }
