@@ -20,14 +20,13 @@ import com.example.csgo.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 
+private const val INSTANCE_STATE_PAGE = "INSTANCE_STATE_PAGE"
+private const val INSTANCE_STATE_TOTAL_ITEMS = "INSTANCE_STATE_TOTAL_ITEMS"
+
+
 @AndroidEntryPoint
 class MatchesFragment : Fragment(), MatchesAdapter.OnItemClickListener,
     MatchesAdapter.OnBottomReachedListener {
-
-    companion object {
-        private const val INSTANCE_STATE_PAGE = "INSTANCE_STATE_PAGE"
-        private const val INSTANCE_STATE_TOTAL_ITEMS = "INSTANCE_STATE_TOTAL_ITEMS"
-    }
 
     private val viewModel: MatchesViewModel by viewModels()
     private lateinit var binding: FragmentMatchesBinding
@@ -71,7 +70,7 @@ class MatchesFragment : Fragment(), MatchesAdapter.OnItemClickListener,
                     showProgress(!it.second)
                 }
 
-                Resource.Status.ERROR, Resource.Status.NETWORK_ERROR -> {
+                Resource.Status.ERROR -> {
                     showProgress(false)
                     Toast.makeText(
                         context,

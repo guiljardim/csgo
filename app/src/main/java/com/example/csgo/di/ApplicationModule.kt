@@ -1,6 +1,7 @@
 package com.example.csgo.di
 
-import com.example.csgo.BuildConfig.*
+import com.example.csgo.BuildConfig.BASE_URL
+import com.example.csgo.BuildConfig.DEBUG
 import com.example.csgo.data.api.MatchesService
 import com.example.csgo.data.api.OpponentsService
 import com.example.csgo.data.datasource.MatchesRemoteDataSource
@@ -50,42 +51,34 @@ class ApplicationModule {
             .build()
 
     @Provides
-    @Singleton
     fun provideMatchesService(retrofit: Retrofit): MatchesService =
         retrofit.create(MatchesService::class.java)
 
     @Provides
-    @Singleton
     fun provideOpponentsService(retrofit: Retrofit): OpponentsService =
         retrofit.create(OpponentsService::class.java)
 
     @Provides
-    @Singleton
     fun provideMatchesRemoteDataSource(matchesService: MatchesService) =
         MatchesRemoteDataSource(matchesService)
 
     @Provides
-    @Singleton
     fun provideOpponentsRemoteDataSource(opponentsService: OpponentsService) =
         OpponentsRemoteDataSource(opponentsService)
 
     @Provides
-    @Singleton
     fun provideMatchesRepository(matchesRemoteDataSource: MatchesRemoteDataSource): MatchesRepository =
         MatchesRepositoryImpl(matchesRemoteDataSource)
 
     @Provides
-    @Singleton
     fun provideOpponentsRepository(opponentsRemoteDataSource: OpponentsRemoteDataSource): OpponentsRepository =
         OpponentsRepositoryImpl(opponentsRemoteDataSource)
 
     @Provides
-    @Singleton
     fun provideGetMatchesUseCase(matchesRepository: MatchesRepository) =
         GetMatchesUseCase(matchesRepository)
 
     @Provides
-    @Singleton
     fun provideGetOpponentsDetailsUseCase(opponentsRepository: OpponentsRepository) =
         GetOpponentsDetailsUseCase(opponentsRepository)
 
