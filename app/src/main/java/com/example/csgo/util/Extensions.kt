@@ -12,11 +12,6 @@ private const val defaultValueSeven = 7
 private const val defaultValueTwentyFour = 24
 private const val defaultValueSixty = 60
 private const val defaultValueThousand = 1000
-private const val dot = "."
-private const val emptyString = "."
-private const val datePattern = "EEE"
-private const val dateInNumberPattern = "dd.MM"
-private const val hourPattern = "HHmm"
 
 @SuppressLint("SimpleDateFormat")
 fun Date?.formatToPattern(context: Context): String {
@@ -24,17 +19,12 @@ fun Date?.formatToPattern(context: Context): String {
         context.getString(R.string.today)
     } else {
         val sDefSystemLanguage = Locale.getDefault()
-        if (this?.isFromThisWeek() == true) SimpleDateFormat(
-            datePattern,
-            sDefSystemLanguage
-        ).format(
+        if (this?.isFromThisWeek() == true) SimpleDateFormat("EEE", sDefSystemLanguage).format(
             this
-        ).replace(dot, emptyString) else SimpleDateFormat(dateInNumberPattern).format(
-            this ?: Date()
-        )
+        ).replace(".", "") else SimpleDateFormat("dd.MM").format(this ?: Date())
     }
 
-    val hour = SimpleDateFormat(hourPattern).format(this ?: Date())
+    val hour = SimpleDateFormat("HH:mm").format(this ?: Date())
     return "$date, $hour"
 }
 
