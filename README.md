@@ -40,7 +40,7 @@ App have support english and portuguese
 
 
 ## Installation
-https://drive.google.com/file/d/1MotUoCHTmSfcvRDYB7V9ZE5zfOQSwuwh/view?usp=sharing
+https://drive.google.com/file/d/1jasOlnBh8mWKBdtuzB2V1_ar9vpdV-Rh/view?usp=sharing
 
 ## Libs
 
