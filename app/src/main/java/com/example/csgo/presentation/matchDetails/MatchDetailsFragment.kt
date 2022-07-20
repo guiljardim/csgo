@@ -14,7 +14,6 @@ import com.example.csgo.R
 import com.example.csgo.databinding.FragmentMatchDetailsBinding
 import com.example.csgo.domain.model.Match
 import com.example.csgo.util.Resource
-import com.example.csgo.util.mapToShow
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -60,7 +59,7 @@ class MatchDetailsFragment : Fragment() {
                     showProgress(true)
                 }
 
-                Resource.Status.ERROR, Resource.Status.NETWORK_ERROR -> {
+                Resource.Status.ERROR -> {
                     showProgress(false)
                     Toast.makeText(context, getString(R.string.error_details), Toast.LENGTH_SHORT)
                         .show()
