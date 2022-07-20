@@ -1,5 +1,6 @@
 package com.example.csgo.presentation.matches
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,18 +18,21 @@ import javax.inject.Inject
 class MatchesViewModel @Inject constructor(private val getMatchesUseCase: GetMatchesUseCase) :
     ViewModel() {
 
-    val matches = MutableLiveData<Pair<Resource<List<Match>>, Boolean>>()
+    private val _matches = MutableLiveData<Pair<Resource<List<Match>>, Boolean>>()
+
+    val matches: LiveData<Pair<Resource<List<Match>>, Boolean>>
+        get() = _matches
 
     fun getMatches(page: Int, isFromLoadMore: Boolean) {
         with(viewModelScope) {
             launch {
                 getMatchesUseCase.invoke(page)
                     .onStart {
-                        matches.postValue(Pair(Resource.loading(), isFromLoadMore))
+                        _matches.postValue(Pair(Resource.loading(), isFromLoadMore))
                     }.catch {
-                        matches.postValue(Pair(Resource.error(), isFromLoadMore))
+                        _matches.postValue(Pair(Resource.error(), isFromLoadMore))
                     }.collect {
-                        matches.postValue(Pair(Resource.success(it), isFromLoadMore))
+                        _matches.postValue(Pair(Resource.success(it), isFromLoadMore))
                     }
             }
         }
