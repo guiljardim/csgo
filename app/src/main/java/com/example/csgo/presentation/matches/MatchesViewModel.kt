@@ -1,5 +1,6 @@
 package com.example.csgo.presentation.matches
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,8 +8,8 @@ import com.example.csgo.domain.model.Match
 import com.example.csgo.domain.useCase.GetMatchesUseCase
 import com.example.csgo.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,29 +18,25 @@ import javax.inject.Inject
 class MatchesViewModel @Inject constructor(private val getMatchesUseCase: GetMatchesUseCase) :
     ViewModel() {
 
-    private var listOfMatches: MutableList<Match> = mutableListOf()
+    private val _matches = MutableLiveData<Pair<Resource<List<Match>>, Boolean>>()
 
-
-    val matches = MutableLiveData<Pair<Resource<List<Match>>, Boolean>>()
+    val matches: LiveData<Pair<Resource<List<Match>>, Boolean>>
+        get() = _matches
 
     fun getMatches(page: Int, isFromLoadMore: Boolean) {
-        viewModelScope.launch {
-            getMatchesUseCase(page)
-                .map { resource ->
-                    when (resource.status) {
-                        Resource.Status.LOADING -> {
-                            matches.postValue(Pair(Resource.loading(), isFromLoadMore))
-                        }
-                        Resource.Status.SUCCESS -> {
-                            matches.postValue(Pair(Resource.success(resource.data), isFromLoadMore))
-                        }
-                        else -> {
-                            matches.postValue(Pair(Resource.error(resource.error), isFromLoadMore))
-                        }
+        with(viewModelScope) {
+            launch {
+                getMatchesUseCase.invoke(page)
+                    .onStart {
+                        _matches.postValue(Pair(Resource.loading(), isFromLoadMore))
+                    }.catch {
+                        _matches.postValue(Pair(Resource.error(), isFromLoadMore))
+                    }.collect {
+                        _matches.postValue(Pair(Resource.success(it), isFromLoadMore))
                     }
-                }
-                .stateIn(viewModelScope)
+            }
         }
+
     }
 
     fun onScrollEnded(page: Int) {

@@ -4,10 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.text.format.DateUtils
 import com.example.csgo.R
-import com.example.csgo.domain.model.Match
-import com.example.csgo.presentation.matchDetails.PlayerToShow
 import java.text.SimpleDateFormat
 import java.util.*
+
+private const val defaultValue = 0
+private const val defaultValueSeven = 7
+private const val defaultValueTwentyFour = 24
+private const val defaultValueSixty = 60
+private const val defaultValueThousand = 1000
 
 @SuppressLint("SimpleDateFormat")
 fun Date?.formatToPattern(context: Context): String {
@@ -15,8 +19,8 @@ fun Date?.formatToPattern(context: Context): String {
         context.getString(R.string.today)
     } else {
         val sDefSystemLanguage = Locale.getDefault()
-        if (isFromThisWeek(this ?: Date())) SimpleDateFormat("EEE", sDefSystemLanguage).format(
-            this ?: Date()
+        if (this?.isFromThisWeek() == true) SimpleDateFormat("EEE", sDefSystemLanguage).format(
+            this
         ).replace(".", "") else SimpleDateFormat("dd.MM").format(this ?: Date())
     }
 
@@ -25,38 +29,27 @@ fun Date?.formatToPattern(context: Context): String {
 }
 
 
-fun List<Match.Player>.mapToShow(player: List<Match.Player>?): List<PlayerToShow> {
-    val playerToShow: MutableList<PlayerToShow> = mutableListOf()
-    for ((i, v) in this.withIndex()) {
-        playerToShow.add(
-            PlayerToShow(
-                v.name,
-                v.nickname,
-                v.image_url,
-                player?.get(i)?.name,
-                player?.get(i)?.nickname,
-                player?.get(i)?.image_url
-            )
-        )
+fun Date.isFromThisWeek(): Boolean {
+    val monday: Date
+
+    with(Calendar.getInstance()) {
+        firstDayOfWeek = Calendar.MONDAY
+
+        set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+        set(Calendar.HOUR_OF_DAY, defaultValue)
+        set(Calendar.MINUTE, defaultValue)
+        set(Calendar.SECOND, defaultValue)
+        set(Calendar.MILLISECOND, defaultValue)
+
+
+        monday = this.time
+
     }
-    return playerToShow
-}
 
-fun isFromThisWeek(date: Date): Boolean {
-    val c: Calendar = Calendar.getInstance()
-    c.firstDayOfWeek = Calendar.MONDAY
+    val nextMonday =
+        Date(monday.time + defaultValueSeven * defaultValueTwentyFour * defaultValueSixty * defaultValueSixty * defaultValueThousand)
 
-    c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
-    c.set(Calendar.HOUR_OF_DAY, 0)
-    c.set(Calendar.MINUTE, 0)
-    c.set(Calendar.SECOND, 0)
-    c.set(Calendar.MILLISECOND, 0)
-
-    val monday: Date = c.time
-
-    val nextMonday = Date(monday.time + 7 * 24 * 60 * 60 * 1000)
-
-    return date.after(monday) && date.before(nextMonday)
+    return this.after(monday) && this.before(nextMonday)
 
 
 }

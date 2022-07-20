@@ -12,6 +12,9 @@ import com.example.csgo.databinding.LoadingMatchBinding
 import com.example.csgo.domain.model.Match
 import com.example.csgo.util.formatToPattern
 
+private const val LOADING = 0
+private const val ITEM = 1
+
 class MatchesAdapter(
     private val context: Context,
     private var listOfMatch: List<Match>,
@@ -133,11 +136,6 @@ class MatchesAdapter(
 
     interface OnBottomReachedListener {
         fun onBottomReached()
-    }
-
-    companion object {
-        const val LOADING = 0
-        const val ITEM = 1
     }
 
 }

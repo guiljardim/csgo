@@ -20,14 +20,13 @@ import com.example.csgo.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 
+private const val INSTANCE_STATE_PAGE = "INSTANCE_STATE_PAGE"
+private const val INSTANCE_STATE_TOTAL_ITEMS = "INSTANCE_STATE_TOTAL_ITEMS"
+
+
 @AndroidEntryPoint
 class MatchesFragment : Fragment(), MatchesAdapter.OnItemClickListener,
     MatchesAdapter.OnBottomReachedListener {
-
-    companion object {
-        private const val INSTANCE_STATE_PAGE = "INSTANCE_STATE_PAGE"
-        private const val INSTANCE_STATE_TOTAL_ITEMS = "INSTANCE_STATE_TOTAL_ITEMS"
-    }
 
     private val viewModel: MatchesViewModel by viewModels()
     private lateinit var binding: FragmentMatchesBinding
@@ -41,6 +40,13 @@ class MatchesFragment : Fragment(), MatchesAdapter.OnItemClickListener,
         outState.putInt(INSTANCE_STATE_PAGE, page)
         outState.putInt(INSTANCE_STATE_TOTAL_ITEMS, totalItems)
         super.onSaveInstanceState(outState)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.getMatches(page, false)
+        observer()
+        createMatchList()
+        super.onViewCreated(view, savedInstanceState)
     }
 
 
@@ -58,8 +64,6 @@ class MatchesFragment : Fragment(), MatchesAdapter.OnItemClickListener,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMatchesBinding.inflate(inflater, container, false)
-        viewModel.getMatches(page, false)
-        observer()
         return binding.root
     }
 
@@ -71,7 +75,7 @@ class MatchesFragment : Fragment(), MatchesAdapter.OnItemClickListener,
                     showProgress(!it.second)
                 }
 
-                Resource.Status.ERROR, Resource.Status.NETWORK_ERROR -> {
+                Resource.Status.ERROR -> {
                     showProgress(false)
                     Toast.makeText(
                         context,
@@ -84,7 +88,6 @@ class MatchesFragment : Fragment(), MatchesAdapter.OnItemClickListener,
                     showProgress(false)
                     totalItems = it.first.data?.first()?.totalItem ?: 0
                     it.first.data?.let { match -> listOfMatches.addAll(match) }
-                    createMatchList()
                     if (it.second) {
                         matchesAdapter?.notifyDataSetChanged()
                     }
